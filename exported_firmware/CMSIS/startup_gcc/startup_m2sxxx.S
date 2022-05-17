@@ -165,8 +165,8 @@ check_stack_init:
     cmp r11, #0
     beq system_init
 clear_stack:
-/* FIXME (skeys)    ldr r0, = __stack_start__ */
-/* FIXME (skeys)    ldr r1, =_estack */
+    ldr r0, = __stack_start__
+    ldr r1, =_estack
     ldr r2, RAM_INIT_PATTERN
     bl fill_memory                      /* ; fill_memory takes r0 - r2 as arguments uses r4, r5, r6, r7, r8, r9, and does not preserve contents */
     
@@ -199,7 +199,7 @@ clear_stack:
  * set in the linker script.
  */
 remap_memory:
-/* FIXME (skeys)    ldr r0, =__smartfusion2_memory_remap */
+    ldr r0, =__smartfusion2_memory_remap
     ldr r2, =0
     ldr r3, =1
     cmp r0, #2
@@ -233,25 +233,25 @@ check_esram_remap:
  * VMA point at the eNVM despite the LMA and VMa having different values.
  */
  check_mirrored_nvm:
-/* FIXME (skeys)    ldr r0, =__mirrored_nvm */
+    ldr r0, =__mirrored_nvm
     cmp r0, #0
     bne copy_data
     
 /*------------------------------------------------------------------------------
  * Copy vector table.
  */
-/* FIXME (skeys)    ldr r0, =__vector_table_load */
-/* FIXME (skeys)    ldr r1, =__vector_table_start */
-/* FIXME (skeys)    ldr r2, =_evector_table */
+    ldr r0, =__vector_table_load
+    ldr r1, =__vector_table_start
+    ldr r2, =_evector_table
     bl block_copy
     
 /*------------------------------------------------------------------------------
  * Copy code section.
  */
 copy_text:
-/* FIXME (skeys)    ldr r0, =__text_load */
-/* FIXME (skeys)    ldr r1, =__text_start */
-/* FIXME (skeys)    ldr r2, =_etext */
+    ldr r0, =__text_load
+    ldr r1, =__text_start
+    ldr r2, =_etext
     bl block_copy
     
 /*------------------------------------------------------------------------------
@@ -259,17 +259,17 @@ copy_text:
  */
 
  copy_data:
-/* FIXME (skeys)    ldr r0, =__data_load */
-/* FIXME (skeys)    ldr r1, =__data_start */
-/* FIXME (skeys)    ldr r2, =_edata */
+    ldr r0, =__data_load
+    ldr r1, =__data_start
+    ldr r2, =_edata
     bl block_copy
     
 /*------------------------------------------------------------------------------
  *  Clear .bss
  */
 clear_bss:                               
-/* FIXME (skeys)    ldr r0, =__bss_start__ */
-/* FIXME (skeys)    ldr r1, =__bss_end__ */
+    ldr r0, =__bss_start__
+    ldr r1, =__bss_end__
     ldr r2, RAM_INIT_PATTERN
     bl fill_memory                      /* ; fill_memory takes r0 - r2 as arguments uses r4, r5, r6, r7, r8, r9, and does not preserve contents */
     
@@ -286,8 +286,8 @@ clear_bss:
 clear_heap:
     cmp r11, #0
     beq call_glob_ctor
-/* FIXME (skeys)    ldr r0, =__heap_start__*/
-/* FIXME (skeys)    ldr r1, =_eheap */
+    ldr r0, =__heap_start__
+    ldr r1, =_eheap
     ldr r2, HEAP_INIT_PATTERN
     bl fill_memory                      /* ; fill_memory takes r0 - r2 as arguments uses r4, r5, r6, r7, r8, r9, and does not preserve contents */
 
