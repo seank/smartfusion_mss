@@ -28,6 +28,7 @@ cc_library(
         "exported_firmware/drivers/mss_hpdma/mss_hpdma.c",
         "exported_firmware/drivers/mss_i2c/mss_i2c.c",
         "exported_firmware/drivers/mss_nvm/mss_nvm.c",
+        "exported_firmware/drivers/mss_pdma/mss_pdma.c",
         "exported_firmware/drivers/mss_rtc/mss_rtc.c",
         "exported_firmware/drivers/mss_spi/mss_spi.c",
         "exported_firmware/drivers/mss_sys_services/mss_comblk.c",
